@@ -1,0 +1,120 @@
+.plugin-shiki {
+    --padding-sm: 4px;
+    --padding-md: calc(var(--padding-sm) * 2);
+    --padding-lg: calc(var(--padding-sm) * 4);
+    --font-size-label: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    &:hover {
+        .shiki-button {
+            opacity: 1;
+        }
+        .shiki-lang {
+            opacity: 0;
+        }
+    }
+    &:has(.shiki) {
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+    &:has(.shiki-title) .shiki {
+        padding-top: calc(var(--padding-lg) + var(--font-size-label));
+    }
+    .shiki {
+        border-radius: 0 !important;
+        box-shadow: none;
+        margin-bottom: 0;
+        padding: var(--padding-lg);
+        white-space: pre !important;
+        code {
+            display: block;
+            min-width: stretch;
+            width: fit-content;
+        }
+        .diff {
+            display: inline-block;
+            width: stretch;
+            &.added {
+                background-color: rgba(0, 255, 0, 0.12);
+            }
+            &.removed {
+                background-color: rgba(255, 0, 0, 0.12);
+            }
+        }
+    }
+    &[data-linenumbers] .shiki {
+        padding-left: 0;
+        code {
+            counter-increment: line calc(var(--start-index, 1) - 1);
+            counter-reset: line;
+            .line {
+                &::before {
+                    background-color: var(--theme-bgcolor);
+                    border-right: 1px solid gray;
+                    color: var(--theme-color);
+                    content: counter(line);
+                    counter-increment: line;
+                    display: inline-block;
+                    left: 0;
+                    padding-right: 0.5rem;
+                    position: sticky;
+                    text-align: right;
+                    width: 3rem;
+                }
+            }
+        }
+    }
+}
+
+.shiki-wrapper {
+    background-color: var(--theme-bgcolor);
+    color: var(--theme-color);
+}
+
+.shiki-label {
+    color: var(--theme-color);
+    font-size: var(--font-size-label);
+    font-style: italic;
+    line-height: var(--font-size-label);
+    position: absolute;
+    top: var(--padding-md);
+}
+
+.shiki-lang {
+    right: var(--padding-md);
+    transition: opacity 0.3s;
+}
+
+.shiki-title {
+    left: var(--padding-md);
+}
+
+.shiki-button {
+    background: #373737
+        url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20%20%20%20viewBox%3D%220%200%2024%2024%22%20%20%20%20%20fill%3D%22none%22%20%20%20%20%20stroke%3D%22%23a0a0a0%22%20%20%20%20%20stroke-width%3D%222%22%20%20%20%20%20stroke-linecap%3D%22round%22%20%20%20%20%20stroke-linejoin%3D%22round%22%20%20%20%20%20aria-hidden%3D%22true%22%3E%3Crect%20x%3D%229%22%20y%3D%222%22%20width%3D%226%22%20height%3D%224%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M9%204H7a2%202%200%200%200-2%202v14a2%202%200%200%200%202%202h10a2%202%200%200%200%202-2V6a2%202%200%200%200-2-2h-2%22%2F%3E%3C%2Fsvg%3E)
+        no-repeat center / 24px;
+    border: 2px solid #575757;
+    border-radius: 6px;
+    height: 40px;
+    opacity: 0;
+    position: absolute;
+    right: var(--padding-md);
+    top: var(--padding-md);
+    transition:
+        opacity 0.3s,
+        border-color 0.3s,
+        background-color 0.3s;
+    width: 40px;
+    &.disabled {
+        background-color: #324432;
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20%20%20%20viewBox%3D%220%200%2024%2024%22%20%20%20%20%20fill%3D%22none%22%20%20%20%20%20stroke%3D%22%2376ca76%22%20%20%20%20%20stroke-width%3D%222%22%20%20%20%20%20stroke-linecap%3D%22round%22%20%20%20%20%20stroke-linejoin%3D%22round%22%20%20%20%20%20aria-hidden%3D%22true%22%3E%3Crect%20x%3D%229%22%20y%3D%222%22%20width%3D%226%22%20height%3D%224%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M9%204H7a2%202%200%200%200-2%202v14a2%202%200%200%200%202%202h10a2%202%200%200%200%202-2V6a2%202%200%200%200-2-2h-2%22%2F%3E%3Cpath%20d%3D%22M9%2013l2%202%204-4%22%2F%3E%3C%2Fsvg%3E);
+        border-color: #539253;
+        pointer-events: none;
+        transition:
+            border-color 0s,
+            background-color 0s;
+    }
+}
