@@ -2,7 +2,7 @@
 /**
  * Shiki Syntax Highlighter を使用してコードを表示するプラグイン
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author kanateko
  * @link https://jpngamerswiki.com/?f51cd63681
  * @license https://www.gnu.org/licenses/gpl-3.0.html GPLv3 or later
@@ -70,7 +70,7 @@ class Shiki
         $script = $this->script();
 
         return <<<EOD
-        <div class="plugin-shiki$class" style="visibility:hidden;$start"$start$lang$theme$title$linenumbers>
+        <div class="plugin-shiki$class" style="visibility:hidden;$start"$lang$theme$title$linenumbers>
             <pre class="shiki-target">$code</pre>
         </div>
         $script
